@@ -44,6 +44,13 @@
         icon: "joystick"
       }
     ],
+    // Social proof — REAL figures. ~582 referral registrations/mo is canonical
+    // (Metabase card Q3246, 2026-06-09 pull). The ~2× is directional (referred
+    // trial→purchase 54.7% vs 28.6% non-referred, proxy) — confirm vs dashboard 561.
+    proof: [
+      { num: "~580", label: "families join Novakid through a friend every month" },
+      { num: "2\xD7", label: "more likely to keep learning \u2014 friends who join stick with it after their trial" }
+    ],
     // funnel: signed-up | trial | subscribed
     // reward: granted-month | granted-lesson | pending | review | none
     friends: [
@@ -64,7 +71,7 @@
     faq: [
       {
         q: "When do I get my reward?",
-        a: "You earn a free lesson once your friend finishes a trial, and a free month once they subscribe. Both are added to your account automatically \u2014 no need to claim them."
+        a: "You earn a free lesson once your friend finishes a trial, and a free month once they subscribe. Both are added to your account automatically, with no need to claim them, and they never expire."
       },
       {
         q: "What counts \u2014 a trial or a subscription?",

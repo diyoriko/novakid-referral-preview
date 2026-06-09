@@ -12,6 +12,10 @@
     ];
     return /* @__PURE__ */ React.createElement("section", { className: "pg-card pg-rise", "data-screen-label": "How it works" }, /* @__PURE__ */ React.createElement("div", { className: "pg-card__head" }, /* @__PURE__ */ React.createElement("h2", { className: "pg-card__title" }, "Three steps to free lessons")), /* @__PURE__ */ React.createElement("ol", { className: "pg-how" }, steps.map((s, i) => /* @__PURE__ */ React.createElement("li", { key: i, className: "pg-how__step" }, /* @__PURE__ */ React.createElement("span", { className: "pg-how__num" }, i + 1), /* @__PURE__ */ React.createElement("h3", { className: "pg-how__h" }, s.h), /* @__PURE__ */ React.createElement("p", { className: "pg-how__b" }, s.body)))));
   }
+  function SocialProof({ data }) {
+    if (!data.proof || !data.proof.length) return null;
+    return /* @__PURE__ */ React.createElement("section", { className: "pg-proof pg-rise", "aria-label": "Referral programme stats", "data-screen-label": "Social proof" }, /* @__PURE__ */ React.createElement("div", { className: "pg-proof__grid" }, data.proof.map((s, i) => /* @__PURE__ */ React.createElement("div", { key: i, className: "pg-proof__stat" }, /* @__PURE__ */ React.createElement("div", { className: "pg-proof__num" }, s.num), /* @__PURE__ */ React.createElement("div", { className: "pg-proof__lbl" }, s.label)))), /* @__PURE__ */ React.createElement("p", { className: "pg-proof__note" }, "Based on Novakid referral data, 2026."));
+  }
   function FriendRow({ f }) {
     return /* @__PURE__ */ React.createElement("div", { className: "pg-friend-row" }, /* @__PURE__ */ React.createElement(FriendAvatar, { initial: f.initial, id: f.id }), /* @__PURE__ */ React.createElement("div", { className: "pg-friend-meta" }, /* @__PURE__ */ React.createElement("div", { className: "pg-friend-name" }, "Friend #", f.id), /* @__PURE__ */ React.createElement("div", { className: "pg-friend-date" }, "Invited ", f.date)), /* @__PURE__ */ React.createElement("div", { className: "pg-friend-chips" }, /* @__PURE__ */ React.createElement(FunnelChip, { funnel: f.funnel }), /* @__PURE__ */ React.createElement(RewardChip, { reward: f.reward })));
   }
@@ -73,6 +77,7 @@
   window.NKS = Object.assign(window.NKS || {}, {
     Progress,
     HowItWorks,
+    SocialProof,
     Friends,
     Rewards,
     FriendBanner,
