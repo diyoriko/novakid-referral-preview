@@ -13,8 +13,8 @@
     const map = {
       "granted-month": { label: "Granted +1 month", cls: "pg-chip--granted", Ic: IconCheck },
       "granted-lesson": { label: "Granted +1 lesson", cls: "pg-chip--granted", Ic: IconCheck },
-      pending: { label: "Reward pending", cls: "pg-chip--pending", Ic: IconClock },
-      review: { label: "Under review", cls: "pg-chip--review", Ic: IconSearch },
+      pending: { label: "Reward on the way", cls: "pg-chip--pending", Ic: IconClock },
+      review: { label: "Reward on the way", cls: "pg-chip--pending", Ic: IconClock },
       none: { label: "No reward yet", cls: "pg-chip--review", Ic: null }
     };
     const m = map[reward] || map.none;

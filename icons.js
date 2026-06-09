@@ -32,6 +32,8 @@
   const IconUser = (p) => /* @__PURE__ */ React.createElement(Icon, { ...p }, /* @__PURE__ */ React.createElement("circle", { cx: "12", cy: "8", r: "3.5" }), /* @__PURE__ */ React.createElement("path", { d: "M5.5 20a6.5 6.5 0 0 1 13 0" }));
   const IconWallet = (p) => /* @__PURE__ */ React.createElement(Icon, { ...p }, /* @__PURE__ */ React.createElement("rect", { x: "3", y: "6", width: "18", height: "13", rx: "2.5" }), /* @__PURE__ */ React.createElement("path", { d: "M3 9.5h18" }), /* @__PURE__ */ React.createElement("circle", { cx: "16.5", cy: "13.5", r: "1.2", fill: "currentColor", stroke: "none" }));
   const IconExternal = (p) => /* @__PURE__ */ React.createElement(Icon, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M14 5h5v5" }), /* @__PURE__ */ React.createElement("path", { d: "M19 5l-7 7" }), /* @__PURE__ */ React.createElement("path", { d: "M18 13v5a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 5 18V8a1.5 1.5 0 0 1 1.5-1.5H11" }));
+  const IconPlus = (p) => /* @__PURE__ */ React.createElement(Icon, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M12 5v14" }), /* @__PURE__ */ React.createElement("path", { d: "M5 12h14" }));
+  const IconX = (p) => /* @__PURE__ */ React.createElement(Icon, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M6 6l12 12" }), /* @__PURE__ */ React.createElement("path", { d: "M18 6L6 18" }));
   window.NKI = {
     IconWhatsApp,
     IconTelegram,
@@ -49,6 +51,8 @@
     IconSparkle,
     IconUser,
     IconWallet,
-    IconExternal
+    IconExternal,
+    IconPlus,
+    IconX
   };
 })();

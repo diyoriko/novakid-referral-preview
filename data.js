@@ -28,12 +28,21 @@
       { num: "2", label: "Subscribed" },
       { num: "+1 mo", label: "Reward earned", reward: true }
     ],
-    // Registered → Trial → Purchased → Reward
-    steps: [
-      { n: "7", label: "Registered" },
-      { n: "4", label: "Trial" },
-      { n: "2", label: "Purchased" },
-      { n: "1", label: "Reward", final: true }
+    // Seasonal giveaways — a bonus ON TOP of the always-on free-lessons programme.
+    // Templatised: swap/append campaigns here; the first active one renders, and
+    // active:false hides the band entirely. Future contest = just edit this.
+    promos: [
+      {
+        active: true,
+        badge: "Ends 30 Jun",
+        eyebrow: "Seasonal bonus",
+        title: "Win a PlayStation 5",
+        blurb: "Invite the most friends by 30 June to win \u2014 on top of the free lessons you already earn.",
+        ctaLabel: "How the contest works",
+        ctaHref: "",
+        // set a real URL in prod; empty -> opens details
+        icon: "joystick"
+      }
     ],
     // funnel: signed-up | trial | subscribed
     // reward: granted-month | granted-lesson | pending | review | none
@@ -70,8 +79,8 @@
         a: "Rewards appear once your friend completes the step (trial or subscription) and our team confirms it. If it's been more than a few days after they completed a step, contact support and we'll sort it out."
       },
       {
-        q: "Why does a reward say 'under review'?",
-        a: "We briefly check each subscription reward before granting it \u2014 usually within a couple of days. Once it clears, your free month moves to granted and lands in your balance."
+        q: "Why does a reward say 'reward on the way'?",
+        a: "We briefly check each subscription reward before granting it, usually within a couple of days. Once it clears, your free month moves to granted and lands in your account."
       }
     ]
   };
