@@ -1,5 +1,5 @@
 (() => {
-  const { IconWhatsApp, IconTelegram, IconMail, IconCopy, IconLink, IconCheck, IconSparkle, IconGift, IconExternal, IconArrowRight } = NKI;
+  const { IconWhatsApp, IconTelegram, IconMail, IconCopy, IconLink, IconCheck, IconSparkle, IconGift, IconReverse } = NKI;
   function shareLinkFor(S) {
     return typeof window !== "undefined" && window.__SHARE_URL__ || "https://" + S.link;
   }
@@ -72,8 +72,9 @@
             window.nkTrack && window.nkTrack("referral_preview_open");
           }
         },
-        "See what your friend gets"
-      ), waBtn, /* @__PURE__ */ React.createElement("div", { className: "pg-share-row" }, /* @__PURE__ */ React.createElement("a", { className: "pg-share-pill", href: urls.telegram, target: "_blank", rel: "noopener noreferrer", onClick: () => track("telegram") }, /* @__PURE__ */ React.createElement(IconTelegram, { size: 18, style: { color: "#2AABEE" } }), " Telegram"), /* @__PURE__ */ React.createElement("a", { className: "pg-share-pill", href: urls.email, target: "_blank", rel: "noopener noreferrer", onClick: () => track("email") }, /* @__PURE__ */ React.createElement(IconMail, { size: 18, style: { color: "var(--nk-daisy-bush)" } }), " Email")), /* @__PURE__ */ React.createElement("div", { className: "pg-share-divider" }, "or copy your link"), /* @__PURE__ */ React.createElement(LinkField, { link: urls.link, onCopy }), /* @__PURE__ */ React.createElement(Tip, null)), /* @__PURE__ */ React.createElement("div", { className: "pg-share-card pg-flip__face pg-flip__face--back", "aria-hidden": !flipped }, /* @__PURE__ */ React.createElement("button", { ref: backRef, className: "pg-flip__ctl", onClick: () => setFlipped(false) }, "Reverse"), /* @__PURE__ */ React.createElement(MessagePreview, { S })))
+        /* @__PURE__ */ React.createElement(IconReverse, { size: 15 }),
+        " See what your friend gets"
+      ), waBtn, /* @__PURE__ */ React.createElement("div", { className: "pg-share-row" }, /* @__PURE__ */ React.createElement("a", { className: "pg-share-pill", href: urls.telegram, target: "_blank", rel: "noopener noreferrer", onClick: () => track("telegram") }, /* @__PURE__ */ React.createElement(IconTelegram, { size: 18, style: { color: "#2AABEE" } }), " Telegram"), /* @__PURE__ */ React.createElement("a", { className: "pg-share-pill", href: urls.email, target: "_blank", rel: "noopener noreferrer", onClick: () => track("email") }, /* @__PURE__ */ React.createElement(IconMail, { size: 18, style: { color: "var(--nk-daisy-bush)" } }), " Email")), /* @__PURE__ */ React.createElement("div", { className: "pg-share-divider" }, "or copy your link"), /* @__PURE__ */ React.createElement(LinkField, { link: urls.link, onCopy }), /* @__PURE__ */ React.createElement(Tip, null)), /* @__PURE__ */ React.createElement("div", { className: "pg-share-card pg-flip__face pg-flip__face--back", "aria-hidden": !flipped }, /* @__PURE__ */ React.createElement("button", { ref: backRef, className: "pg-flip__ctl", onClick: () => setFlipped(false) }, /* @__PURE__ */ React.createElement(IconReverse, { size: 15 }), " Reverse"), /* @__PURE__ */ React.createElement(MessagePreview, { S })))
     );
   }
   function Hero({ data, onCopy, heroVariant }) {

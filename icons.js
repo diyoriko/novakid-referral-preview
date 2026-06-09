@@ -34,6 +34,7 @@
   const IconExternal = (p) => /* @__PURE__ */ React.createElement(Icon, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M14 5h5v5" }), /* @__PURE__ */ React.createElement("path", { d: "M19 5l-7 7" }), /* @__PURE__ */ React.createElement("path", { d: "M18 13v5a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 5 18V8a1.5 1.5 0 0 1 1.5-1.5H11" }));
   const IconPlus = (p) => /* @__PURE__ */ React.createElement(Icon, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M12 5v14" }), /* @__PURE__ */ React.createElement("path", { d: "M5 12h14" }));
   const IconX = (p) => /* @__PURE__ */ React.createElement(Icon, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M6 6l12 12" }), /* @__PURE__ */ React.createElement("path", { d: "M18 6L6 18" }));
+  const IconReverse = (p) => /* @__PURE__ */ React.createElement(Icon, { ...p }, /* @__PURE__ */ React.createElement("path", { d: "M20 11a8 8 0 1 0-2.3 5.7" }), /* @__PURE__ */ React.createElement("path", { d: "M20 4v5h-5" }));
   window.NKI = {
     IconWhatsApp,
     IconTelegram,
@@ -53,6 +54,7 @@
     IconWallet,
     IconExternal,
     IconPlus,
-    IconX
+    IconX,
+    IconReverse
   };
 })();

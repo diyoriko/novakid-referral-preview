@@ -539,10 +539,12 @@ img { display: block; }
 .pg-flip__face--back { position: absolute; inset: 0; transform: rotateY(180deg); overflow: auto; }
 /* top-left control on both faces — same position so it stays put across the flip */
 .pg-flip__ctl {
+  display: inline-flex; align-items: center; gap: 6px;
   align-self: flex-start; margin-bottom: 16px;
   background: none; border: 0; cursor: pointer; padding: 2px 0;
   font-family: var(--nk-font-sans); font-size: 14px; font-weight: 700; color: var(--accent-deep);
 }
+.pg-flip__ctl svg { width: 16px; height: 16px; }
 .pg-flip__ctl:hover { color: var(--nk-violet); }
 
 /* ============================================================================
