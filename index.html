@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Novakid — Invite friends, get free lessons</title>
+
+<!-- Link unfurl / Open Graph — what a friend sees when the invite link is pasted
+     into WhatsApp, Telegram, iMessage, email, etc. Mirrors the on-page preview.
+     NOTE: these only take effect once served on the real page over public https
+     with an absolute og:image URL — see SHARE-PREVIEW.md. -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Novakid" />
+<meta property="og:title" content="Learn English with Novakid — a welcome gift inside" />
+<meta property="og:description" content="Live 1-on-1 lessons with expert teachers. Your child gets a welcome discount after their free trial." />
+<meta property="og:image" content="https://diyoriko.github.io/novakid-referral-preview/assets/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Learn English with Novakid — a welcome gift inside" />
+<meta name="twitter:description" content="Live 1-on-1 lessons with expert teachers. Your child gets a welcome discount after their free trial." />
+<meta name="twitter:image" content="https://diyoriko.github.io/novakid-referral-preview/assets/og-card.png" />
+
+<link rel="stylesheet" href="colors_and_type.css" />
+<link rel="stylesheet" href="referral.css" />
+</head>
+<body>
+<div id="root"></div>
+
+<!-- React vendored locally so this file opens by double-click, offline.
+     The app is plain JS compiled from the .jsx sources by build.sh
+     (no in-browser Babel → no file:// fetch problem). -->
+<script src="vendor/react.production.min.js"></script>
+<script src="vendor/react-dom.production.min.js"></script>
+
+<script src="icons.js"></script>
+<script src="data.js"></script>
+<script src="shared.js"></script>
+<script src="hero.js"></script>
+<script src="sections.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

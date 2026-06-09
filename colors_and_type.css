@@ -1,0 +1,249 @@
+/* ============================================================================
+   Novakid Design System — Colors & Type
+   Source of truth: reference/01-design-system.md + reference/novakid-tokens.css
+   Reconciled with Figma 'Design System 🖌️ Landing Pages' (pQEYDZPSXAotX3NlssYmOI)
+
+   Mobile-first. Mikado only. Two weights (400 / 700). Violet brand.
+============================================================================ */
+
+/* ---- Mikado web font (HVD-licensed; Novakid owns rights) -------------------- */
+@font-face {
+  font-family: "Mikado";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/Mikado-Web-Regular.woff2") format("woff2"),
+       url("fonts/Mikado-Web-Regular.woff")  format("woff");
+}
+@font-face {
+  font-family: "Mikado";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/Mikado-Web-Bold.woff2") format("woff2"),
+       url("fonts/Mikado-Web-Bold.woff")  format("woff");
+}
+
+:root {
+  /* ─────────────────────────────────────────────────────────────────────────
+     1 · COLOR — primitives
+     ───────────────────────────────────────────────────────────────────────── */
+
+  /* Brand / violet family (logo deep + UI bright) */
+  --nk-persian-indigo: #210A74; /* logo mark · hero deep headings · on-yellow text */
+  --nk-daisy-bush:     #4221B8; /* hover/pressed · deep accent panel */
+  --nk-violet:         #6D46FC; /* UI BRAND · primary CTA · brand accent */
+  --nk-melrose:        #9593FF; /* decorative · illustrations */
+  --nk-heliotrope:     #C76EF2; /* gradient stop · highlight */
+  --nk-magnolia:       #F7F5FF; /* tinted brand surface · eyebrow chip */
+
+  /* Neutrals — only 8 */
+  --nk-white:          #FFFFFF;
+  --nk-alabaster:      #FAFAFA;
+  --nk-wild-sand:      #F4F4F4;
+  --nk-mischka:        #E2E0E6;
+  --nk-silver:         #C6C6C6;
+  --nk-jumbo:          #706F73;
+  --nk-outer-space:    #484848;
+  --nk-black:          #2C2A33;
+
+  /* Status / accents (NOT brand primaries) */
+  --nk-green-snake:    #19AA20; /* success */
+  --nk-green-apple:    #31C838;
+  --nk-green-lime:     #79FD7F;
+  --nk-green-white-ice:#E9FBF0;
+  --nk-yellow-lemon:   #FFE60A; /* highlight underline · CTA accents */
+  --nk-yellow-gin-fizz:#FFF8DF;
+  --nk-red-persimmon:  #FF5956; /* danger — bg only, NEVER white text on it */
+  --nk-red-chablis:    #FFF3F3;
+  --nk-blue-periwinkle:#C5D2FF;
+  --nk-blue-patterns:  #E1F3FE;
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     2 · COLOR — semantic
+     ───────────────────────────────────────────────────────────────────────── */
+
+  /* Backgrounds */
+  --nk-bg:               var(--nk-white);
+  --nk-bg-muted:         var(--nk-alabaster);
+  --nk-bg-subtle:        var(--nk-wild-sand);
+  --nk-bg-brand:         var(--nk-violet);
+  --nk-bg-brand-hover:   var(--nk-daisy-bush);
+  --nk-bg-brand-deep:    var(--nk-persian-indigo);
+  --nk-bg-brand-surface: var(--nk-magnolia);
+  --nk-bg-positive:      var(--nk-green-snake);
+  --nk-bg-positive-soft: var(--nk-green-white-ice);
+  --nk-bg-danger:        var(--nk-red-persimmon);
+  --nk-bg-danger-soft:   var(--nk-red-chablis);
+  --nk-bg-warning:       var(--nk-yellow-lemon);
+  --nk-bg-warning-soft:  var(--nk-yellow-gin-fizz);
+
+  /* Text — fg layers */
+  --nk-text:             var(--nk-black);       /* fg1 — primary text       */
+  --nk-text-secondary:   var(--nk-outer-space); /* fg2 — secondary text     */
+  --nk-text-muted:       var(--nk-jumbo);       /* fg3 — muted / captions   */
+  --nk-text-on-brand:    var(--nk-white);       /* on violet/indigo/danger  */
+  --nk-text-brand:       var(--nk-daisy-bush);  /* brand-tinted text        */
+  --nk-text-brand-deep:  var(--nk-persian-indigo);
+  --nk-text-positive:    var(--nk-green-snake);
+  --nk-text-danger:      var(--nk-red-persimmon);
+
+  /* Borders */
+  --nk-border:        var(--nk-mischka);
+  --nk-border-subtle: var(--nk-wild-sand);
+  --nk-border-strong: var(--nk-silver);
+  --nk-border-brand:  var(--nk-violet);
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     3 · TYPE — primitives (Mikado scale from Landing DS Figma)
+     ─────────────────────────────────────────────────────────────────────────
+       Headings: 60 / 48 / 40 / 36 / 32 / 24 / 20 / 18 / 16
+       Body:     24 / 20 / 18 / 16 / 14 / 12  (each Regular + Bold)
+       Caption:  10
+       Line-heights ≈ 128% (slightly tight for display feel)
+       Weights:  400 regular OR 700 bold — NEVER 500/600
+     ───────────────────────────────────────────────────────────────────────── */
+
+  --nk-font-sans: "Mikado", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --nk-fw-regular: 400;
+  --nk-fw-bold:    700;
+
+  /* Heading sizes & line-heights — letterSpacing 0 across the whole scale */
+  --nk-h-60-size: 60px; --nk-h-60-lh: 76.8px;
+  --nk-h-48-size: 48px; --nk-h-48-lh: 61.4px;
+  --nk-h-40-size: 40px; --nk-h-40-lh: 51.2px;
+  --nk-h-36-size: 36px; --nk-h-36-lh: 46.1px;
+  --nk-h-32-size: 32px; --nk-h-32-lh: 42.2px;
+  --nk-h-24-size: 24px; --nk-h-24-lh: 31.7px;
+  --nk-h-20-size: 20px; --nk-h-20-lh: 26.4px;
+  --nk-h-18-size: 18px; --nk-h-18-lh: 23.8px;
+  --nk-h-16-size: 16px; --nk-h-16-lh: 21.1px;
+
+  /* Body sizes (140% line-height = 1.4×) */
+  --nk-b-24-size: 24px; --nk-b-24-lh: 33.6px;
+  --nk-b-20-size: 20px; --nk-b-20-lh: 28px;
+  --nk-b-18-size: 18px; --nk-b-18-lh: 25.2px;
+  --nk-b-16-size: 16px; --nk-b-16-lh: 22.4px;
+  --nk-b-14-size: 14px; --nk-b-14-lh: 19.6px;
+  --nk-b-12-size: 12px; --nk-b-12-lh: 16.8px;
+
+  /* Caption — the only canonical caption style (Figma 'Caption' / 'Caption | LC') */
+  --nk-c-10-size: 10px; --nk-c-10-lh: 15.5px; --nk-c-10-ls: 1px;
+
+  /* Buttons reuse Body 16 | Bold — no separate "Button" type style in Figma. */
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     4 · SPACING — strict 4-px scale (only these values)
+     ───────────────────────────────────────────────────────────────────────── */
+  --nk-space-1:  4px;
+  --nk-space-2:  8px;
+  --nk-space-3:  12px;
+  --nk-space-4:  16px;
+  --nk-space-6:  24px;
+  --nk-space-8:  32px;
+  --nk-space-12: 48px;
+  --nk-space-16: 64px;
+  --nk-space-24: 96px;
+  --nk-space-40: 160px;
+
+  /* Responsive section padding-y (mobile / tablet / desktop) */
+  --nk-section-py-mobile:  48px;
+  --nk-section-py-tablet:  64px;
+  --nk-section-py-desktop: 96px;
+
+  /* Card padding by breakpoint */
+  --nk-card-p-mobile:  24px;
+  --nk-card-p-tablet:  28px;
+  --nk-card-p-desktop: 32px;
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     5 · RADII
+     ───────────────────────────────────────────────────────────────────────── */
+  --nk-radius-1:    4px;
+  --nk-radius-2:    8px;
+  --nk-radius-3:    12px;
+  --nk-radius-4:    16px;  /* Cards */
+  --nk-radius-5:    20px;  /* Buttons (per Figma — NOT pill 9999) */
+  --nk-radius-6:    24px;  /* Inputs · Header (mobile) */
+  --nk-radius-7:    30px;  /* Header (desktop) */
+  --nk-radius-8:    32px;  /* CTA panels */
+  --nk-radius-full: 9999px; /* Pills · chips · eyebrow */
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     6 · ELEVATION — ONE shadow recipe only
+     ───────────────────────────────────────────────────────────────────────── */
+  --nk-shadow-popup:  0 8px 36px rgba(0, 0, 0, 0.16);   /* floating cards / modals */
+  --nk-shadow-header: 0 10px 10px rgba(0, 0, 0, 0.10);  /* header drop shadow      */
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     7 · GRID — different per breakpoint (NOT 12 across)
+     ───────────────────────────────────────────────────────────────────────── */
+  --nk-grid-cols-mobile:    1;
+  --nk-grid-cols-tablet:    8;
+  --nk-grid-cols-desktop:   12;
+  --nk-grid-gutter:         16px;
+  --nk-grid-margin-mobile:  20px;
+  --nk-grid-margin-tablet:  40px;
+  --nk-grid-margin-desktop: 0px;
+
+  --nk-container-narrow: 720px;
+  --nk-container-l:      1200px;
+  --nk-container-xl:     1440px;
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     8 · MOTION
+     ───────────────────────────────────────────────────────────────────────── */
+  --nk-ease:     cubic-bezier(.4, 0, .2, 1);
+  --nk-ease-out: cubic-bezier(0, 0, .2, 1);
+  --nk-dur-fast: 120ms;
+  --nk-dur-base: 180ms;
+  --nk-dur-slow: 300ms;
+}
+
+/* ============================================================================
+   Type utilities — mobile-first, scale up via @media
+   ============================================================================ */
+
+/* Headings — semantic alias (h1..h5 step down by breakpoint) */
+.nk-h1 { font-family: var(--nk-font-sans); font-weight: 700; font-size: var(--nk-h-40-size); line-height: var(--nk-h-40-lh); color: var(--nk-text); }
+.nk-h2 { font-family: var(--nk-font-sans); font-weight: 700; font-size: var(--nk-h-32-size); line-height: var(--nk-h-32-lh); color: var(--nk-text); }
+.nk-h3 { font-family: var(--nk-font-sans); font-weight: 700; font-size: var(--nk-h-24-size); line-height: var(--nk-h-24-lh); color: var(--nk-text); }
+.nk-h4 { font-family: var(--nk-font-sans); font-weight: 700; font-size: var(--nk-h-20-size); line-height: var(--nk-h-20-lh); color: var(--nk-text); }
+.nk-h5 { font-family: var(--nk-font-sans); font-weight: 700; font-size: var(--nk-h-18-size); line-height: var(--nk-h-18-lh); color: var(--nk-text); }
+.nk-subtitle { font-family: var(--nk-font-sans); font-weight: 700; font-size: var(--nk-h-16-size); line-height: var(--nk-h-16-lh); color: var(--nk-text); }
+
+/* Body */
+.nk-body-24 { font-family: var(--nk-font-sans); font-weight: 400; font-size: 24px; line-height: 33.6px; color: var(--nk-text); }
+.nk-body-20 { font-family: var(--nk-font-sans); font-weight: 400; font-size: 20px; line-height: 28px;   color: var(--nk-text); }
+.nk-body-18 { font-family: var(--nk-font-sans); font-weight: 400; font-size: 18px; line-height: 25.2px; color: var(--nk-text); }
+.nk-body    { font-family: var(--nk-font-sans); font-weight: 400; font-size: 16px; line-height: 22.4px; color: var(--nk-text); }
+.nk-small   { font-family: var(--nk-font-sans); font-weight: 400; font-size: 14px; line-height: 19.6px; color: var(--nk-text-muted); }
+.nk-desc    { font-family: var(--nk-font-sans); font-weight: 400; font-size: 12px; line-height: 16.8px; color: var(--nk-text-muted); }
+
+/* Caption 10 — the only canonical 10px text style.
+   Base = natural case, muted colour, +1px tracking (footer fine print, badges).
+   Add `.nk-caption--eyebrow` for above-section labels (uppercase + Daisy Bush). */
+.nk-caption          { font-family: var(--nk-font-sans); font-weight: 400; font-size: 10px; line-height: 15.5px; letter-spacing: 1px; color: var(--nk-text-muted); }
+.nk-caption--eyebrow { text-transform: uppercase; color: var(--nk-text-brand); }
+
+/* Tablet step-up — letterSpacing stays 0 per Figma */
+@media (min-width: 768px) {
+  .nk-h1 { font-size: 48px; line-height: 61.4px; }
+  .nk-h2 { font-size: 40px; line-height: 51.2px; }
+  .nk-h3 { font-size: 32px; line-height: 42.2px; }
+}
+@media (min-width: 1024px) {
+  .nk-h1 { font-size: 60px; line-height: 76.8px; }
+  .nk-h2 { font-size: 48px; line-height: 61.4px; }
+  .nk-h3 { font-size: 36px; line-height: 46.1px; }
+}
+
+/* ============================================================================
+   Removed in the 2026-05 token revision:
+   • Negative letter-spacing on H1/H2 — all headings letterSpacing 0
+   • Separate "Button" type style — buttons reuse Body 16 | Bold
+   • .nk-eyebrow chip + .nk-highlight underscore utilities — neither was a
+     Figma component. Use .nk-caption (uppercase + 1px tracking) for eyebrows;
+     style the hero highlight word inline (color only, no decoration).
+   ============================================================================ */
