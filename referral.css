@@ -234,6 +234,20 @@ img { display: block; }
 }
 .pg-hero h1 .hl { color: #FFE60A; }
 .pg-hero__sub { margin: 0; font-size: 17px; line-height: 1.5; color: rgba(255,255,255,0.9); max-width: 30em; }
+
+/* explicit "who gets what" — adapted from the 2024 file's two-up reward card */
+.pg-hero__rewards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; max-width: 460px; }
+.pg-reward-tile {
+  display: flex; flex-direction: column; gap: 3px;
+  background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px; padding: 14px 16px;
+}
+.pg-reward-tile__who { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: rgba(255, 255, 255, 0.7); }
+.pg-reward-tile__val { font-size: 19px; font-weight: 700; line-height: 1.15; color: #FFE60A; }
+.pg-reward-tile:last-child .pg-reward-tile__val { color: #fff; }
+.pg-reward-tile__sub { font-size: 12.5px; line-height: 1.4; color: rgba(255, 255, 255, 0.8); margin-top: 2px; }
+@media (max-width: 600px) { .pg-hero__rewards { grid-template-columns: 1fr; gap: 10px; } }
+
 .pg-hero__r { position: relative; z-index: 1; }
 
 .pg-share-card {
@@ -310,6 +324,24 @@ img { display: block; }
   .pg-how__num { grid-row: 1 / span 2; margin-bottom: 0; }
   .pg-how__h { grid-column: 2; grid-row: 1; }
   .pg-how__b { grid-column: 2; grid-row: 2; }
+}
+
+/* ============================================================================
+   SOCIAL PROOF  (real referral figures)
+============================================================================ */
+.pg-proof {
+  background: var(--nk-magnolia); border: 1px solid var(--nk-mischka);
+  border-radius: var(--pg-card-radius); padding: 28px 32px;
+}
+.pg-proof__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.pg-proof__stat { display: flex; flex-direction: column; gap: 6px; }
+.pg-proof__num { font-size: 40px; font-weight: 700; line-height: 1; letter-spacing: 0; color: var(--nk-violet); }
+.pg-proof__lbl { font-size: 15px; line-height: 1.45; color: var(--nk-text-secondary); max-width: 24em; }
+.pg-proof__note { margin: 18px 0 0; font-size: 12px; color: var(--nk-text-muted); }
+@media (max-width: 640px) {
+  .pg-proof { padding: 22px; }
+  .pg-proof__grid { grid-template-columns: 1fr; gap: 20px; }
+  .pg-proof__num { font-size: 34px; }
 }
 
 /* ============================================================================
