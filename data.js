@@ -44,12 +44,27 @@
         icon: "joystick"
       }
     ],
-    // Social proof — REAL figures. ~582 referral registrations/mo is canonical
-    // (Metabase card Q3246, 2026-06-09 pull). The ~2× is directional (referred
-    // trial→purchase 54.7% vs 28.6% non-referred, proxy) — confirm vs dashboard 561.
+    // Social proof — REAL figures. ~582 referral registrations/mo (Metabase card Q3246).
+    // 2× = referred trial→purchase 54.7% vs 28.6% non-referred (and referral = 5.6% of
+    // paid purchases) — confirmed via the Analytics Bot, 2026-06-09. UTM-proxy; the strict
+    // backend referral table is still EU-blocked, so directional but authoritative.
     proof: [
       { num: "~580", label: "families join Novakid through a friend every month" },
       { num: "2\xD7", label: "more likely to keep learning \u2014 friends who join stick with it after their trial" }
+    ],
+    // One specific, on-brand parent voice (DS testimonial = an observation, not adjectives).
+    testimonial: {
+      quote: "I sent the link to two mums from school. Both kids took a trial that week, and now my daughter has a classmate to practise with.",
+      name: "Anna",
+      detail: "mum of Mateusz",
+      place: "Warsaw"
+    },
+    // Recognition-only inviter status (NO extra rewards — the reward stays the live,
+    // uncapped free lessons). Tiers are by friends who subscribed. Motivational badge.
+    levels: [
+      { at: 1, name: "Connector" },
+      { at: 3, name: "Super-sharer" },
+      { at: 5, name: "Novakid legend" }
     ],
     // funnel: signed-up | trial | subscribed
     // reward: granted-month | granted-lesson | pending | review | none

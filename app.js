@@ -1,6 +1,6 @@
 (() => {
   const { IconPlus, IconCheck } = NKI;
-  const { Hero, Promo, Progress, HowItWorks, SocialProof, Friends, Rewards, FriendBanner, Faq } = NKS;
+  const { Hero, Promo, Progress, HowItWorks, SocialProof, Friends, Rewards, Milestones, FriendBanner, Faq } = NKS;
   const HERO_VARIANT = "whatsapp-led";
   const FRIENDS_VARIANT = "rows";
   window.nkTrack = window.nkTrack || function(event, props) {
@@ -34,6 +34,19 @@
   }
   function App() {
     const [toasts, setToasts] = React.useState([]);
+    const [status, setStatus] = React.useState("loading");
+    React.useEffect(() => {
+      if (/[?&]state=error/.test(window.location.search)) {
+        setStatus("error");
+        return;
+      }
+      const id = setTimeout(() => setStatus("ready"), 700);
+      return () => clearTimeout(id);
+    }, []);
+    const retryStats = React.useCallback(() => {
+      setStatus("loading");
+      setTimeout(() => setStatus("ready"), 700);
+    }, []);
     React.useEffect(() => {
       window.nkTrack("referral_page_view");
     }, []);
@@ -76,7 +89,7 @@
     return /* @__PURE__ */ React.createElement("div", { className: "pg-page" }, /* @__PURE__ */ React.createElement(NavBar, null), /* @__PURE__ */ React.createElement("main", { className: "pg-wrap pg-main", id: "main" }, /* @__PURE__ */ React.createElement(Hero, { data: NKDATA, onCopy, heroVariant: HERO_VARIANT }), promo ? /* @__PURE__ */ React.createElement(Promo, { promo, onLearnMore: () => {
       window.nkTrack("referral_promo_click");
       pushToast("Contest details coming soon");
-    } }) : null, /* @__PURE__ */ React.createElement(Progress, { data: NKDATA }), /* @__PURE__ */ React.createElement(HowItWorks, null), /* @__PURE__ */ React.createElement(SocialProof, { data: NKDATA }), /* @__PURE__ */ React.createElement(Friends, { data: NKDATA, variant: FRIENDS_VARIANT }), /* @__PURE__ */ React.createElement(Rewards, { data: NKDATA }), /* @__PURE__ */ React.createElement(FriendBanner, null), /* @__PURE__ */ React.createElement(Faq, { data: NKDATA })), /* @__PURE__ */ React.createElement(Toasts, { items: toasts }));
+    } }) : null, /* @__PURE__ */ React.createElement(Progress, { data: NKDATA, status, onRetry: retryStats }), /* @__PURE__ */ React.createElement(HowItWorks, null), /* @__PURE__ */ React.createElement(SocialProof, { data: NKDATA }), /* @__PURE__ */ React.createElement(Friends, { data: NKDATA, variant: FRIENDS_VARIANT, status, onRetry: retryStats }), /* @__PURE__ */ React.createElement(Rewards, { data: NKDATA, status, onRetry: retryStats }), /* @__PURE__ */ React.createElement(Milestones, { data: NKDATA, status, onRetry: retryStats }), /* @__PURE__ */ React.createElement(FriendBanner, null), /* @__PURE__ */ React.createElement(Faq, { data: NKDATA })), /* @__PURE__ */ React.createElement(Toasts, { items: toasts }));
   }
   ReactDOM.createRoot(document.getElementById("root")).render(/* @__PURE__ */ React.createElement(App, null));
 })();

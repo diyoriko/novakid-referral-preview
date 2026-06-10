@@ -1,8 +1,24 @@
 (() => {
   const { IconInfo, IconChevronDown, IconCheck, IconClock, IconGift, IconExternal } = NKI;
   const { FunnelChip, RewardChip, FriendAvatar } = NKS;
-  function Progress({ data }) {
-    return /* @__PURE__ */ React.createElement("section", { className: "pg-card pg-rise", "data-screen-label": "Your progress" }, /* @__PURE__ */ React.createElement("div", { className: "pg-card__head" }, /* @__PURE__ */ React.createElement("h2", { className: "pg-card__title" }, "How your invites are doing")), /* @__PURE__ */ React.createElement("div", { className: "pg-kpis" }, data.kpis.map((k, i) => /* @__PURE__ */ React.createElement("div", { key: i, className: "pg-kpi" + (k.reward ? " pg-kpi--reward" : "") }, /* @__PURE__ */ React.createElement("div", { className: "pg-kpi__num" }, k.num), /* @__PURE__ */ React.createElement("div", { className: "pg-kpi__lbl" }, k.label)))), /* @__PURE__ */ React.createElement("p", { className: "pg-note" }, /* @__PURE__ */ React.createElement(IconInfo, { size: 16 }), /* @__PURE__ */ React.createElement("span", null, "Statuses update from the backend as your friends progress \u2014 some can take a short while to confirm.")));
+  function Skel({ w, h, av }) {
+    return /* @__PURE__ */ React.createElement("span", { className: "pg-skel" + (av ? " pg-skel--av" : ""), style: { width: av ? void 0 : w || "100%", height: av ? void 0 : h || 14 } });
+  }
+  function Loadfail({ onRetry }) {
+    return /* @__PURE__ */ React.createElement("div", { className: "pg-loadfail" }, /* @__PURE__ */ React.createElement("p", null, "We couldn't load your stats just now \u2014 your invite link above still works."), /* @__PURE__ */ React.createElement("button", { className: "pg-btn pg-btn--ghost pg-btn--sm", onClick: onRetry }, "Try again"));
+  }
+  function gate(status, onRetry, loading, content) {
+    if (status === "error") return /* @__PURE__ */ React.createElement(Loadfail, { onRetry });
+    if (status === "loading") return loading;
+    return content;
+  }
+  function Progress({ data, status, onRetry }) {
+    return /* @__PURE__ */ React.createElement("section", { className: "pg-card pg-rise", "data-screen-label": "Your progress" }, /* @__PURE__ */ React.createElement("div", { className: "pg-card__head" }, /* @__PURE__ */ React.createElement("h2", { className: "pg-card__title" }, "How your invites are doing")), gate(
+      status,
+      onRetry,
+      /* @__PURE__ */ React.createElement("div", { className: "pg-kpis" }, [0, 1, 2, 3].map((i) => /* @__PURE__ */ React.createElement("div", { key: i, className: "pg-kpi" }, /* @__PURE__ */ React.createElement(Skel, { w: "48%", h: 30 }), /* @__PURE__ */ React.createElement(Skel, { w: "72%", h: 12 })))),
+      /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "pg-kpis" }, data.kpis.map((k, i) => /* @__PURE__ */ React.createElement("div", { key: i, className: "pg-kpi" + (k.reward ? " pg-kpi--reward" : "") }, /* @__PURE__ */ React.createElement("div", { className: "pg-kpi__num" }, k.num), /* @__PURE__ */ React.createElement("div", { className: "pg-kpi__lbl" }, k.label)))), /* @__PURE__ */ React.createElement("p", { className: "pg-note" }, /* @__PURE__ */ React.createElement(IconInfo, { size: 16 }), /* @__PURE__ */ React.createElement("span", null, "Statuses update from the backend as your friends progress \u2014 some can take a short while to confirm.")))
+    ));
   }
   function HowItWorks() {
     const steps = [
@@ -14,7 +30,7 @@
   }
   function SocialProof({ data }) {
     if (!data.proof || !data.proof.length) return null;
-    return /* @__PURE__ */ React.createElement("section", { className: "pg-proof pg-rise", "aria-label": "Referral programme stats", "data-screen-label": "Social proof" }, /* @__PURE__ */ React.createElement("div", { className: "pg-proof__grid" }, data.proof.map((s, i) => /* @__PURE__ */ React.createElement("div", { key: i, className: "pg-proof__stat" }, /* @__PURE__ */ React.createElement("div", { className: "pg-proof__num" }, s.num), /* @__PURE__ */ React.createElement("div", { className: "pg-proof__lbl" }, s.label)))), /* @__PURE__ */ React.createElement("p", { className: "pg-proof__note" }, "Based on Novakid referral data, 2026."));
+    return /* @__PURE__ */ React.createElement("section", { className: "pg-proof pg-rise", "aria-label": "Referral programme stats", "data-screen-label": "Social proof" }, /* @__PURE__ */ React.createElement("div", { className: "pg-proof__grid" }, data.proof.map((s, i) => /* @__PURE__ */ React.createElement("div", { key: i, className: "pg-proof__stat" }, /* @__PURE__ */ React.createElement("div", { className: "pg-proof__num" }, s.num), /* @__PURE__ */ React.createElement("div", { className: "pg-proof__lbl" }, s.label)))), data.testimonial && /* @__PURE__ */ React.createElement("figure", { className: "pg-quote" }, /* @__PURE__ */ React.createElement("blockquote", { className: "pg-quote__text" }, "\u201C", data.testimonial.quote, "\u201D"), /* @__PURE__ */ React.createElement("figcaption", { className: "pg-quote__by" }, data.testimonial.name, " \xB7 ", data.testimonial.detail, " \xB7 ", data.testimonial.place)), /* @__PURE__ */ React.createElement("p", { className: "pg-proof__note" }, "Based on Novakid referral data, 2026."));
   }
   function FriendRow({ f }) {
     return /* @__PURE__ */ React.createElement("div", { className: "pg-friend-row" }, /* @__PURE__ */ React.createElement(FriendAvatar, { initial: f.initial, id: f.id }), /* @__PURE__ */ React.createElement("div", { className: "pg-friend-meta" }, /* @__PURE__ */ React.createElement("div", { className: "pg-friend-name" }, "Friend #", f.id), /* @__PURE__ */ React.createElement("div", { className: "pg-friend-date" }, "Invited ", f.date)), /* @__PURE__ */ React.createElement("div", { className: "pg-friend-chips" }, /* @__PURE__ */ React.createElement(FunnelChip, { funnel: f.funnel }), /* @__PURE__ */ React.createElement(RewardChip, { reward: f.reward })));
@@ -25,21 +41,26 @@
   function FriendsEmpty() {
     return /* @__PURE__ */ React.createElement("div", { className: "pg-empty" }, /* @__PURE__ */ React.createElement("div", { className: "pg-empty__ic" }, /* @__PURE__ */ React.createElement("img", { src: "assets/icons/design/letter.svg", alt: "" })), /* @__PURE__ */ React.createElement("h3", null, "No invites yet"), /* @__PURE__ */ React.createElement("p", null, "Share your link above \u2014 once a friend signs up, you'll see them here with their status."));
   }
-  function Friends({ data, variant }) {
+  function Friends({ data, variant, status, onRetry }) {
     const [open, setOpen] = React.useState(false);
     const total = data.friends.length;
     const shown = open ? data.friends : data.friends.slice(0, 4);
-    return /* @__PURE__ */ React.createElement("section", { className: "pg-card pg-rise", "data-screen-label": "Invited friends" }, /* @__PURE__ */ React.createElement("div", { className: "pg-card__head" }, /* @__PURE__ */ React.createElement("h2", { className: "pg-card__title" }, "Who you've invited"), /* @__PURE__ */ React.createElement("p", { className: "pg-card__sub" }, "Names are masked for privacy. Statuses update as your friends progress.")), total === 0 ? /* @__PURE__ */ React.createElement(FriendsEmpty, null) : variant === "cards" ? /* @__PURE__ */ React.createElement("div", { className: "pg-friend-grid" }, shown.map((f) => /* @__PURE__ */ React.createElement(FriendCard, { key: f.id, f }))) : /* @__PURE__ */ React.createElement("div", null, shown.map((f) => /* @__PURE__ */ React.createElement(FriendRow, { key: f.id, f }))), total > 4 && /* @__PURE__ */ React.createElement(
-      "button",
-      {
-        className: "pg-showall" + (open ? " is-open" : ""),
-        onClick: () => {
-          setOpen(!open);
-          if (!open) window.nkTrack && window.nkTrack("referral_friends_expand");
-        }
-      },
-      open ? "Show fewer" : `Show all ${total} invited friends`,
-      /* @__PURE__ */ React.createElement(IconChevronDown, { size: 16 })
+    return /* @__PURE__ */ React.createElement("section", { className: "pg-card pg-rise", "data-screen-label": "Invited friends" }, /* @__PURE__ */ React.createElement("div", { className: "pg-card__head" }, /* @__PURE__ */ React.createElement("h2", { className: "pg-card__title" }, "Who you've invited"), /* @__PURE__ */ React.createElement("p", { className: "pg-card__sub" }, "Names are masked for privacy. Statuses update as your friends progress.")), gate(
+      status,
+      onRetry,
+      /* @__PURE__ */ React.createElement("div", null, [0, 1, 2, 3].map((i) => /* @__PURE__ */ React.createElement("div", { key: i, className: "pg-friend-row" }, /* @__PURE__ */ React.createElement(Skel, { av: true }), /* @__PURE__ */ React.createElement("div", { className: "pg-friend-meta" }, /* @__PURE__ */ React.createElement(Skel, { w: "42%", h: 15 }), /* @__PURE__ */ React.createElement(Skel, { w: "26%", h: 11 }))))),
+      /* @__PURE__ */ React.createElement(React.Fragment, null, total === 0 ? /* @__PURE__ */ React.createElement(FriendsEmpty, null) : variant === "cards" ? /* @__PURE__ */ React.createElement("div", { className: "pg-friend-grid" }, shown.map((f) => /* @__PURE__ */ React.createElement(FriendCard, { key: f.id, f }))) : /* @__PURE__ */ React.createElement("div", null, shown.map((f) => /* @__PURE__ */ React.createElement(FriendRow, { key: f.id, f }))), total > 4 && /* @__PURE__ */ React.createElement(
+        "button",
+        {
+          className: "pg-showall" + (open ? " is-open" : ""),
+          onClick: () => {
+            setOpen(!open);
+            if (!open) window.nkTrack && window.nkTrack("referral_friends_expand");
+          }
+        },
+        open ? "Show fewer" : `Show all ${total} invited friends`,
+        /* @__PURE__ */ React.createElement(IconChevronDown, { size: 16 })
+      ))
     ));
   }
   function summarise(ledger) {
@@ -51,12 +72,34 @@
     if (lessons) parts.push(lessons + (lessons === 1 ? " free lesson" : " free lessons"));
     return parts;
   }
-  function Rewards({ data }) {
+  function Rewards({ data, status, onRetry }) {
     const parts = summarise(data.ledger);
-    return /* @__PURE__ */ React.createElement("section", { className: "pg-card pg-rise", "data-screen-label": "Your rewards" }, /* @__PURE__ */ React.createElement("div", { className: "pg-card__head" }, /* @__PURE__ */ React.createElement("h2", { className: "pg-card__title" }, "What you've earned")), /* @__PURE__ */ React.createElement("div", { className: "pg-reward-summary" }, /* @__PURE__ */ React.createElement("div", { className: "pg-reward-summary__ic" }, /* @__PURE__ */ React.createElement("img", { src: "assets/icons/design/medal.svg", alt: "" })), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "pg-reward-summary__t" }, "Earned so far"), /* @__PURE__ */ React.createElement("div", { className: "pg-reward-summary__v" }, parts.length ? parts.map((p, i) => /* @__PURE__ */ React.createElement(React.Fragment, { key: i }, i > 0 ? " + " : "", /* @__PURE__ */ React.createElement("span", { className: "lemon" }, p))) : /* @__PURE__ */ React.createElement("span", null, "Nothing yet \u2014 rewards land here automatically")))), /* @__PURE__ */ React.createElement("div", null, data.ledger.map((r, i) => {
-      const granted = r.kind === "granted";
-      return /* @__PURE__ */ React.createElement("div", { key: i, className: "pg-ledger-row" }, /* @__PURE__ */ React.createElement("div", { className: "pg-ledger-ic " + (granted ? "pg-ledger-ic--granted" : "pg-ledger-ic--review") }, granted ? /* @__PURE__ */ React.createElement(IconGift, { size: 22 }) : /* @__PURE__ */ React.createElement(IconClock, { size: 22 })), /* @__PURE__ */ React.createElement("div", { className: "pg-ledger-meta" }, /* @__PURE__ */ React.createElement("div", { className: "pg-ledger-amt" }, r.amount, r.note ? /* @__PURE__ */ React.createElement("span", { style: { color: "var(--nk-text-muted)", fontWeight: 400 } }, " \xB7 ", r.note) : null), /* @__PURE__ */ React.createElement("div", { className: "pg-ledger-sub" }, r.who, " \xB7 ", r.date)), /* @__PURE__ */ React.createElement("span", { className: "pg-chip " + (granted ? "pg-chip--granted" : "pg-chip--pending") }, granted ? /* @__PURE__ */ React.createElement(IconCheck, { size: 15 }) : /* @__PURE__ */ React.createElement(IconClock, { size: 15 }), granted ? "Granted" : "Reward on the way"));
-    })), /* @__PURE__ */ React.createElement("p", { className: "pg-reward-nudge" }, "Every friend who subscribes is another free month.", " ", /* @__PURE__ */ React.createElement("a", { href: "#main", onClick: () => window.nkTrack && window.nkTrack("referral_renudge_click") }, "Invite one more \u2192")));
+    return /* @__PURE__ */ React.createElement("section", { className: "pg-card pg-rise", "data-screen-label": "Your rewards" }, /* @__PURE__ */ React.createElement("div", { className: "pg-card__head" }, /* @__PURE__ */ React.createElement("h2", { className: "pg-card__title" }, "What you've earned")), gate(
+      status,
+      onRetry,
+      /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "pg-reward-summary", style: { background: "var(--nk-magnolia)" } }, /* @__PURE__ */ React.createElement("span", { className: "pg-skel", style: { width: 44, height: 44, borderRadius: 12 } }), /* @__PURE__ */ React.createElement("div", { style: { flex: 1 } }, /* @__PURE__ */ React.createElement(Skel, { w: "30%", h: 12 }), /* @__PURE__ */ React.createElement("div", { style: { height: 8 } }), /* @__PURE__ */ React.createElement(Skel, { w: "55%", h: 20 }))), [0, 1, 2].map((i) => /* @__PURE__ */ React.createElement("div", { key: i, className: "pg-ledger-row" }, /* @__PURE__ */ React.createElement("span", { className: "pg-skel", style: { width: 40, height: 40, borderRadius: 10 } }), /* @__PURE__ */ React.createElement("div", { className: "pg-ledger-meta" }, /* @__PURE__ */ React.createElement(Skel, { w: "48%", h: 15 }), /* @__PURE__ */ React.createElement(Skel, { w: "32%", h: 12 }))))),
+      /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "pg-reward-summary" }, /* @__PURE__ */ React.createElement("div", { className: "pg-reward-summary__ic" }, /* @__PURE__ */ React.createElement("img", { src: "assets/icons/design/medal.svg", alt: "" })), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "pg-reward-summary__t" }, "Earned so far"), /* @__PURE__ */ React.createElement("div", { className: "pg-reward-summary__v" }, parts.length ? parts.map((p, i) => /* @__PURE__ */ React.createElement(React.Fragment, { key: i }, i > 0 ? " + " : "", /* @__PURE__ */ React.createElement("span", { className: "lemon" }, p))) : /* @__PURE__ */ React.createElement("span", null, "Nothing yet \u2014 rewards land here automatically")))), /* @__PURE__ */ React.createElement("div", null, data.ledger.map((r, i) => {
+        const granted = r.kind === "granted";
+        return /* @__PURE__ */ React.createElement("div", { key: i, className: "pg-ledger-row" }, /* @__PURE__ */ React.createElement("div", { className: "pg-ledger-ic " + (granted ? "pg-ledger-ic--granted" : "pg-ledger-ic--review") }, granted ? /* @__PURE__ */ React.createElement(IconGift, { size: 22 }) : /* @__PURE__ */ React.createElement(IconClock, { size: 22 })), /* @__PURE__ */ React.createElement("div", { className: "pg-ledger-meta" }, /* @__PURE__ */ React.createElement("div", { className: "pg-ledger-amt" }, r.amount, r.note ? /* @__PURE__ */ React.createElement("span", { style: { color: "var(--nk-text-muted)", fontWeight: 400 } }, " \xB7 ", r.note) : null), /* @__PURE__ */ React.createElement("div", { className: "pg-ledger-sub" }, r.who, " \xB7 ", r.date)), /* @__PURE__ */ React.createElement("span", { className: "pg-chip " + (granted ? "pg-chip--granted" : "pg-chip--pending") }, granted ? /* @__PURE__ */ React.createElement(IconCheck, { size: 15 }) : /* @__PURE__ */ React.createElement(IconClock, { size: 15 }), granted ? "Granted" : "Reward on the way"));
+      })), /* @__PURE__ */ React.createElement("p", { className: "pg-reward-nudge" }, "Every friend who subscribes is another free month.", " ", /* @__PURE__ */ React.createElement("a", { href: "#main", onClick: () => window.nkTrack && window.nkTrack("referral_renudge_click") }, "Invite one more \u2192")))
+    ));
+  }
+  function Milestones({ data, status, onRetry }) {
+    const tiers = data.levels || [];
+    if (!tiers.length) return null;
+    const subs = data.friends.filter((f) => f.funnel === "subscribed").length;
+    const current = tiers.filter((t) => subs >= t.at).slice(-1)[0] || null;
+    const next = tiers.find((t) => subs < t.at);
+    return /* @__PURE__ */ React.createElement("section", { className: "pg-card pg-rise", "data-screen-label": "Inviter status" }, /* @__PURE__ */ React.createElement("div", { className: "pg-card__head" }, /* @__PURE__ */ React.createElement("h2", { className: "pg-card__title" }, "Your inviter status"), /* @__PURE__ */ React.createElement("p", { className: "pg-card__sub" }, "Recognition only \u2014 your reward stays the free lessons above, always uncapped.")), gate(
+      status,
+      onRetry,
+      /* @__PURE__ */ React.createElement("div", { className: "pg-levels" }, [0, 1, 2].map((i) => /* @__PURE__ */ React.createElement("div", { key: i, className: "pg-level" }, /* @__PURE__ */ React.createElement("span", { className: "pg-skel", style: { width: 32, height: 32, borderRadius: 9999 } }), /* @__PURE__ */ React.createElement(Skel, { w: "60%", h: 15 }), /* @__PURE__ */ React.createElement(Skel, { w: "44%", h: 12 })))),
+      /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "pg-levels" }, tiers.map((t, i) => {
+        const on = subs >= t.at;
+        const isCur = current && current.at === t.at;
+        return /* @__PURE__ */ React.createElement("div", { key: i, className: "pg-level" + (on ? " is-on" : "") + (isCur ? " is-current" : "") }, /* @__PURE__ */ React.createElement("span", { className: "pg-level__marker" }, on ? /* @__PURE__ */ React.createElement(IconCheck, { size: 18 }) : null), /* @__PURE__ */ React.createElement("span", { className: "pg-level__name" }, t.name), /* @__PURE__ */ React.createElement("span", { className: "pg-level__req" }, t.at, " ", t.at === 1 ? "friend subscribed" : "friends subscribed"));
+      })), next && /* @__PURE__ */ React.createElement("p", { className: "pg-levels__nudge" }, next.at - subs, " more ", next.at - subs === 1 ? "friend who subscribes" : "friends who subscribe", " to reach ", /* @__PURE__ */ React.createElement("b", null, next.name), "."))
+    ));
   }
   function FriendBanner() {
     return /* @__PURE__ */ React.createElement("section", { className: "pg-banner-friend pg-rise", "data-screen-label": "What your friend gets" }, /* @__PURE__ */ React.createElement("div", { className: "pg-banner-friend__ic" }, /* @__PURE__ */ React.createElement("img", { src: "assets/icons/design/gift.svg", alt: "" })), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h3", null, "What your friend gets"), /* @__PURE__ */ React.createElement("p", null, "A welcome discount after their first trial lesson, so the link you send is a real gift, not just an ad.")));
@@ -80,6 +123,7 @@
     SocialProof,
     Friends,
     Rewards,
+    Milestones,
     FriendBanner,
     Promo,
     Faq
