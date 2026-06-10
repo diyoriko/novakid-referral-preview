@@ -1,6 +1,6 @@
 (() => {
   const { IconPlus, IconCheck } = NKI;
-  const { Hero, Promo, Progress, HowItWorks, SocialProof, Friends, Rewards, Milestones, FriendBanner, Faq } = NKS;
+  const { Hero, ClosingCta, StickyShare, Promo, Progress, HowItWorks, SocialProof, Friends, Rewards, Milestones, FriendBanner, Faq } = NKS;
   const HERO_VARIANT = "whatsapp-led";
   const FRIENDS_VARIANT = "rows";
   window.nkTrack = window.nkTrack || function(event, props) {
@@ -16,11 +16,19 @@
     { label: "Get free lessons", active: true, badge: "New" }
   ];
   function NavBar() {
+    const activeRef = React.useRef(null);
+    React.useEffect(() => {
+      const el = activeRef.current;
+      if (!el || !el.parentElement) return;
+      const strip = el.parentElement;
+      strip.scrollLeft = Math.max(0, el.offsetLeft - (strip.clientWidth - el.clientWidth) / 2);
+    }, []);
     return /* @__PURE__ */ React.createElement("header", { className: "pg-nav" }, /* @__PURE__ */ React.createElement("div", { className: "pg-nav__in" }, /* @__PURE__ */ React.createElement("a", { className: "pg-nav__logo", href: "#main", "aria-label": "Novakid \u2014 home" }, /* @__PURE__ */ React.createElement("img", { src: "assets/logo-type.svg", alt: "Novakid" })), /* @__PURE__ */ React.createElement("nav", { className: "pg-nav__tabs", "aria-label": "Primary" }, NAV_TABS.map((t) => /* @__PURE__ */ React.createElement(
       "a",
       {
         key: t.label,
         href: "#",
+        ref: t.active ? activeRef : void 0,
         className: "pg-nav__tab" + (t.active ? " is-active" : ""),
         "aria-current": t.active ? "page" : void 0,
         onClick: (e) => e.preventDefault()
@@ -89,7 +97,7 @@
     return /* @__PURE__ */ React.createElement("div", { className: "pg-page" }, /* @__PURE__ */ React.createElement(NavBar, null), /* @__PURE__ */ React.createElement("main", { className: "pg-wrap pg-main", id: "main" }, /* @__PURE__ */ React.createElement(Hero, { data: NKDATA, onCopy, heroVariant: HERO_VARIANT }), promo ? /* @__PURE__ */ React.createElement(Promo, { promo, onLearnMore: () => {
       window.nkTrack("referral_promo_click");
       pushToast("Contest details coming soon");
-    } }) : null, /* @__PURE__ */ React.createElement(Progress, { data: NKDATA, status, onRetry: retryStats }), /* @__PURE__ */ React.createElement(HowItWorks, null), /* @__PURE__ */ React.createElement(SocialProof, { data: NKDATA }), /* @__PURE__ */ React.createElement(Friends, { data: NKDATA, variant: FRIENDS_VARIANT, status, onRetry: retryStats }), /* @__PURE__ */ React.createElement(Rewards, { data: NKDATA, status, onRetry: retryStats }), /* @__PURE__ */ React.createElement(Milestones, { data: NKDATA, status, onRetry: retryStats }), /* @__PURE__ */ React.createElement(FriendBanner, null), /* @__PURE__ */ React.createElement(Faq, { data: NKDATA })), /* @__PURE__ */ React.createElement(Toasts, { items: toasts }));
+    } }) : null, /* @__PURE__ */ React.createElement(Progress, { data: NKDATA, status, onRetry: retryStats }), /* @__PURE__ */ React.createElement(HowItWorks, null), /* @__PURE__ */ React.createElement(SocialProof, { data: NKDATA }), /* @__PURE__ */ React.createElement(Friends, { data: NKDATA, variant: FRIENDS_VARIANT, status, onRetry: retryStats }), /* @__PURE__ */ React.createElement(Rewards, { data: NKDATA, status, onRetry: retryStats }), /* @__PURE__ */ React.createElement(Milestones, { data: NKDATA, status, onRetry: retryStats }), /* @__PURE__ */ React.createElement(FriendBanner, null), /* @__PURE__ */ React.createElement(Faq, { data: NKDATA }), /* @__PURE__ */ React.createElement(ClosingCta, { data: NKDATA, onCopy })), /* @__PURE__ */ React.createElement(Toasts, { items: toasts }), /* @__PURE__ */ React.createElement(StickyShare, { data: NKDATA }));
   }
   ReactDOM.createRoot(document.getElementById("root")).render(/* @__PURE__ */ React.createElement(App, null));
 })();
