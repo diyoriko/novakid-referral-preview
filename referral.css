@@ -206,13 +206,6 @@ img { display: block; }
 .pg-linkfield__copy:active { transform: translateY(1px); }
 .pg-linkfield__copy.is-done { background: var(--pg-granted-fg); }
 
-/* ── tip line ─────────────────────────────────────────────────────────────── */
-.pg-tip {
-  display: flex; align-items: flex-start; gap: 8px;
-  font-size: 13px; line-height: 1.45; color: var(--nk-text-muted);
-}
-.pg-tip svg { width: 16px; height: 16px; flex: none; margin-top: 1px; color: var(--accent); }
-
 /* ============================================================================
    HERO
 ============================================================================ */
@@ -632,11 +625,13 @@ img { display: block; }
    SHARE CARD FLIP  (front = share controls, back = WhatsApp message preview)
 ============================================================================ */
 .pg-flip { perspective: 1600px; }
-/* both faces share one grid cell, so the card sizes to the TALLER face and the
-   preview is never clipped (the old absolute back face inherited front height) */
-.pg-flip__inner { display: grid; transition: transform 0.6s var(--nk-ease); transform-style: preserve-3d; }
+/* both faces share one grid cell; the inner height is set from JS to the face
+   currently shown (ShareCard.measure), so the card hugs its visible content
+   and the taller preview is never clipped */
+.pg-flip__inner { display: grid; transition: transform 0.6s var(--nk-ease), height 0.5s var(--nk-ease); transform-style: preserve-3d; }
 .pg-flip.is-flipped .pg-flip__inner { transform: rotateY(180deg); }
-.pg-flip__face { grid-area: 1 / 1; -webkit-backface-visibility: hidden; backface-visibility: hidden; display: flex; flex-direction: column; }
+/* align-self:start keeps each face at its natural content height (measurable) */
+.pg-flip__face { grid-area: 1 / 1; align-self: start; -webkit-backface-visibility: hidden; backface-visibility: hidden; display: flex; flex-direction: column; }
 .pg-flip__face--back { transform: rotateY(180deg); }
 /* the hidden face must never catch clicks/focus */
 .pg-flip.is-flipped .pg-flip__face--front { pointer-events: none; }
