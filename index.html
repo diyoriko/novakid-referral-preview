@@ -1,45 +1,185 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" dir="ltr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Novakid — Invite friends, get free lessons</title>
-
-<!-- Link unfurl / Open Graph — what a friend sees when the invite link is pasted
-     into WhatsApp, Telegram, iMessage, email, etc. Mirrors the on-page preview.
-     NOTE: these only take effect once served on the real page over public https
-     with an absolute og:image URL — see SHARE-PREVIEW.md. -->
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="Novakid" />
-<meta property="og:title" content="Learn English with Novakid — a welcome gift inside" />
-<meta property="og:description" content="Live 1-on-1 lessons with expert teachers. Your child gets a welcome discount after their free trial." />
-<meta property="og:image" content="https://diyoriko.github.io/novakid-referral-preview/assets/og-card.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Learn English with Novakid — a welcome gift inside" />
-<meta name="twitter:description" content="Live 1-on-1 lessons with expert teachers. Your child gets a welcome discount after their free trial." />
-<meta name="twitter:image" content="https://diyoriko.github.io/novakid-referral-preview/assets/og-card.png" />
-
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27><path fill=%27%236D46FC%27 d=%27M12 2.5l1.7 5.3 5.3 1.7-5.3 1.7L12 16.5l-1.7-5.3L5 9.5l5.3-1.7L12 2.5Z%27/></svg>" />
-<link rel="stylesheet" href="colors_and_type.css" />
-<link rel="stylesheet" href="referral.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get free lessons — Novakid referral</title>
+<meta name="description" content="Invite friends, learn & earn together. A free lesson when a friend finishes a trial, a free month when they subscribe — and a welcome gift for them.">
+<meta property="og:title" content="Learn English with Novakid — a welcome gift inside">
+<meta property="og:description" content="Live 1-on-1 lessons your child looks forward to. Your child gets a welcome discount on their first lesson.">
+<meta property="og:image" content="https://diyoriko.github.io/novakid-referral-preview/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://diyoriko.github.io/novakid-referral-preview/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="fonts/Mikado-Web-Bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="nk-tokens.css">
+<link rel="stylesheet" href="referral.css">
+<script>window.__SHARE_URL__ = "https://diyoriko.github.io/novakid-referral-preview/";</script>
 </head>
 <body>
-<div id="root"></div>
-<script>window.__SHARE_URL__ = "https://diyoriko.github.io/novakid-referral-preview/"; window.__LANG__ = "en";</script>
 
-<!-- React vendored locally so this file opens by double-click, offline.
-     The app is plain JS compiled from the .jsx sources by build.sh
-     (no in-browser Babel → no file:// fetch problem). -->
-<script src="vendor/react.production.min.js"></script>
-<script src="vendor/react-dom.production.min.js"></script>
+<!-- Demo toolbar: switch the market (drives the share buttons) + RTL. Prototype-only. -->
+<details class="demo">
+  <summary>Demo · market &amp; direction</summary>
+  <label for="market">Market (share-button set)</label>
+  <select id="market" aria-label="Market"></select>
+  <div class="demo__row">
+    <input type="checkbox" id="rtl"><label for="rtl" style="margin:0">RTL (Hebrew/Arabic)</label>
+  </div>
+  <p class="demo__note">Channels are penetration-based — share-channel isn’t instrumented in our data.</p>
+</details>
 
-<script src="icons.js"></script>
-<script src="data.js"></script>
-<script src="shared.js"></script>
-<script src="hero.js"></script>
-<script src="sections.js"></script>
+<!-- Nav -->
+<header class="nav">
+  <div class="wrap nav__in">
+    <span class="nav__logo">novakid</span>
+    <nav class="nav__tabs" aria-label="Primary">
+      <a class="nav__tab" href="#">Main page</a>
+      <a class="nav__tab" href="#">Schedule</a>
+      <a class="nav__tab" href="#">Summer Challenge</a>
+      <a class="nav__tab" href="#">Courses</a>
+      <a class="nav__tab" href="#">Speaking Practice</a>
+      <a class="nav__tab nav__tab--active" href="#" aria-current="page">Referrals</a>
+    </nav>
+    <div class="nav__right">
+      <button class="nav__plus" aria-label="Add">+</button>
+      <span class="nav__avatar" aria-hidden="true">🧒</span>
+      <span class="nav__acct" aria-label="Your account">RS</span>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- Hero -->
+<section class="hero">
+  <div class="hero__deco" aria-hidden="true"></div>
+  <div class="wrap hero__in">
+    <div class="hero__copy">
+      <svg class="hero__spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.6 5.4L19 9l-5.4 1.6L12 16l-1.6-5.4L5 9l5.4-1.6z" fill="currentColor"/></svg>
+      <h1>Invite friends,<br><span class="hl">learn &amp; earn together!</span></h1>
+      <div class="hero__chips">
+        <div class="hero__chip">
+          <span class="hero__chip-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7zM5 9h14v10H5V9z" fill="currentColor"/></svg></span>
+          <span class="hero__chip-tx">Get a free month when they subscribe</span>
+        </div>
+        <div class="hero__chip">
+          <span class="hero__chip-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1.5V8h4.5L14 3.5zM8 12h8v2H8v-2zm0 4h8v2H8v-2z" fill="currentColor"/></svg></span>
+          <span class="hero__chip-tx">A free lesson when they finish a trial</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero__card">
+      <div class="copyfield">
+        <span class="copyfield__url" id="linkText">novakid.com/r/EMMA-7K2P</span>
+        <button class="copyfield__btn" data-action="copy">Copy</button>
+      </div>
+      <div class="sharebtns" data-share-host="hero"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Promo -->
+<section class="promo">
+  <div class="wrap promo__in">
+    <span class="promo__icon" aria-hidden="true">🎮</span>
+    <p class="promo__txt">Whoever invites the most friends <b>wins a PlayStation&nbsp;5</b>
+      <span class="promo__badge">Ends 30 June</span></p>
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="section wrap">
+  <div class="steps">
+    <div class="step"><div class="step__n">1</div><h3 class="step__h">Share your link</h3>
+      <p class="step__b">Sharing in your school group chat converts best.</p></div>
+    <div class="step"><div class="step__n">2</div><h3 class="step__h">Your friend joins</h3>
+      <p class="step__b">And get a welcome discount after their trial.</p></div>
+    <div class="step"><div class="step__n">3</div><h3 class="step__h">You get</h3>
+      <div class="step__b"><ul>
+        <li>Get a free month when they subscribe</li>
+        <li>A free lesson when they finish a trial</li>
+      </ul></div></div>
+  </div>
+</section>
+
+<!-- KPI -->
+<section class="section wrap">
+  <h2 class="section__h">How your invites are doing</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="kpi__n">5</div><div class="kpi__l">Friends invited</div></div>
+    <div class="kpi"><div class="kpi__n">1</div><div class="kpi__l">Completed a trial</div></div>
+    <div class="kpi"><div class="kpi__n">1</div><div class="kpi__l">Subscribed</div></div>
+  </div>
+</section>
+
+<!-- Earned -->
+<section class="section wrap">
+  <h2 class="section__h">What you’ve earned</h2>
+  <div class="earned">
+    <div class="earned__row earned__head"><span>Description</span><span>Reward</span></div>
+    <div class="earned__row">
+      <div class="earned__desc"><b>Friend completed a trial</b><span>5 June 2026</span></div>
+      <div class="earned__reward">+ 1 free lesson</div>
+    </div>
+    <div class="earned__row">
+      <div class="earned__desc"><b>Friend subscribed</b><span>4 June 2026</span></div>
+      <div class="earned__reward">+ 1 free month (8 lessons)</div>
+    </div>
+  </div>
+  <button class="earned__more">Show more</button>
+</section>
+
+<!-- About / proof -->
+<section class="section wrap proof">
+  <h2 class="section__h">About Novakid’s referral programme</h2>
+  <img class="proof__av proof__av--l1" src="assets/avatars/l1.png" alt="" aria-hidden="true">
+  <img class="proof__av proof__av--l2" src="assets/avatars/l2.png" alt="" aria-hidden="true">
+  <img class="proof__av proof__av--l3" src="assets/avatars/l3.png" alt="" aria-hidden="true">
+  <img class="proof__av proof__av--r1" src="assets/avatars/r1.png" alt="" aria-hidden="true">
+  <img class="proof__av proof__av--r2" src="assets/avatars/r2.png" alt="" aria-hidden="true">
+  <img class="proof__av proof__av--r3" src="assets/avatars/r3.png" alt="" aria-hidden="true">
+  <div class="proof__cards">
+    <div class="proof__card">
+      <div class="proof__n">48,593</div>
+      <div class="proof__l">Families have invited a friend who joined Novakid</div>
+    </div>
+    <div class="proof__card">
+      <div class="proof__n">2×</div>
+      <div class="proof__l">more likely to keep learning — children who join through a friend</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq">
+  <div class="wrap">
+    <h2 class="section__h">Questions and answers</h2>
+    <div class="faq__list" id="faq"></div>
+    <a class="faq__rules" href="#">View referral rules</a>
+  </div>
+</section>
+
+<!-- Bonuses band (closing) -->
+<section class="bonus">
+  <div class="wrap bonus__in">
+    <div class="bonus__phone">
+      <div class="bonus__chat">Novakid</div>
+      <img src="assets/og-card.png" alt="Preview of the invite link as it appears in a chat: ‘Learn English with Novakid — a welcome gift inside’.">
+    </div>
+    <div class="bonus__txt">
+      <h2>More Friends = More Bonuses!</h2>
+      <p>Sharing in your school group chat converts best.</p>
+      <div class="bonus__chips" data-share-host="bonus" data-variant="chips"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="channels.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
